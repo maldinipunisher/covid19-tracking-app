@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "529833515843",
+    "project_id": "cov19-tracking",
+    "storage_bucket": "cov19-tracking.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529833515843:android:dae16f8fdf5bcbf1ca2df6",
+        "android_client_info": {
+          "package_name": "com.devid.covid_tracking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "529833515843-9qn27ef01nioa91pcvtrgcrebc5oal6l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAU18McAlgiZdO_0NfL4G1JDDYnU7m96bo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "529833515843-9qn27ef01nioa91pcvtrgcrebc5oal6l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
