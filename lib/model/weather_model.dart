@@ -24,6 +24,7 @@ class Weather {
   final weatherStatus;
   final weatherDescription;
   final temp;
+  final pressure;
   final humid;
   final min_temp;
   final max_temp;
@@ -39,6 +40,7 @@ class Weather {
       this.weatherDescription,
       this.temp,
       this.humid,
+      this.pressure,
       this.min_temp,
       this.max_temp,
       this.windSpeed,
@@ -53,6 +55,7 @@ class Weather {
         weatherData['weather'][0]['description'],
         weatherData['main']['temp'],
         weatherData['main']['humidity'],
+        weatherData['main']['pressure'],
         weatherData['main']['temp_min'],
         weatherData['main']['temp_max'],
         weatherData['wind']['speed'],

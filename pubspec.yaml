@@ -44,6 +44,7 @@ dependencies:
   google_fonts: ^2.1.0
   google_sign_in: ^5.0.4
   http: ^0.13.3
+  ionicons: ^0.1.2
   permission_handler: ^8.0.0+2
 
 dev_dependencies:
@@ -72,6 +73,7 @@ flutter:
     - assets/images/recover_btn.jpg
     - assets/images/menu_earth.png
     - assets/images/wave-bg.jpg
+    - assets/images/pattern.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see

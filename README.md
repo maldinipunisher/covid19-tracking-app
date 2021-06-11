@@ -1,6 +1,12 @@
-# covid_tracking
+# Covid 19 Tracking
 
-A new Flutter project.
+- Change ApiKey from openweathermap.org
+- Run "flutter pub get" before build.
+- Change google-services.json if you want to change to your own firebase. 
+
+Note: 
+- Template by [Anastasia](https://dribbble.com/shots/14925214-Covid-19-Disease-statistics-Mobile-App/attachments/6640605?mode=media)
+
 
 ## Getting Started
 

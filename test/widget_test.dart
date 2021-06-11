@@ -11,7 +11,6 @@ import 'package:covid_tracking/shared/shared.dart';
 import 'package:http/http.dart';
 
 void main() async {
-  final covidData = await ApiServices.getCovidData(country: "ID");
-  print(
-      "active  : ${covidData}\nconfirmed  : ${covidData.confirmed}\ndeaths : ${covidData.deaths}\n  recovered  : ${covidData.recovered} , ");
+  final weather = await ApiServices.getWeatherData();
+  print(weather);
 }

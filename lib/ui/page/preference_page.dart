@@ -82,50 +82,6 @@ class _PreferencePageState extends State<PreferencePage> {
                                       });
                                     });
                               }))),
-                      Text(
-                        "Select the place where you at",
-                        style: titleTextStyle,
-                      ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 30),
-                        height: 40,
-                        child: CountryListPick(
-                          appBar: AppBar(
-                            backgroundColor: salmon,
-                          ),
-                          pickerBuilder: (context, countryCode) {
-                            return DropdownButton(items: [
-                              DropdownMenuItem(
-                                  child: Row(
-                                children: [
-                                  Image.asset(
-                                    countryCode.flagUri,
-                                    package: 'country_list_pick',
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(countryCode.name),
-                                ],
-                              ))
-                            ]);
-                          },
-                          theme: CountryTheme(
-                            isShowFlag: true,
-                            isShowTitle: true,
-                            isShowCode: true,
-                            isDownIcon: true,
-                            showEnglishName: true,
-                          ),
-                          onChanged: (CountryCode code) {
-                            country = code.code;
-                          },
-                          useUiOverlay: true,
-                          useSafeArea: true,
-                          initialSelection: '+62',
-                        ),
-                      ),
                       if (_btnEnable)
                         Center(
                           child: Container(

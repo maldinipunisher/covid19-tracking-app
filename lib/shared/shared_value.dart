@@ -4,11 +4,12 @@ String globalAPI = "https://covid19.mathdro.id/api/";
 //api hanya boleh dipanggil 1 menit sekali
 //api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}
 //api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
-String weatherApiKey = "&appid=ApiKey";
+String weatherApiKey = "yourApiKey";
 String latitude = "";
 String longtitude = "";
 String weatherAPI =
-    "http://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longtitude";
+    "http://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longtitude&units=imperial&appid=";
+String weatherIconUrl = "http://openweathermap.org/img/wn/";
 
 Color salmon = const Color(0xffd53e43);
 Color black = const Color(0xff2f2c3e);
@@ -39,3 +40,9 @@ List<String> availableLanguage = [
   "Korea",
   "Japanese"
 ];
+
+Map<String, String> english = {};
+Map<String, String> indonesia = {};
+Map<String, String> chinenese = {};
+Map<String, String> korea = {};
+Map<String, String> japan = {};

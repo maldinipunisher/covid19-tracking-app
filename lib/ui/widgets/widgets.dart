@@ -16,3 +16,4 @@ part 'custom_splash.dart';
 part 'splash_pop_up.dart';
 part 'selectable_box.dart';
 part 'custom_tilelist.dart';
+part 'custom_stat.dart';

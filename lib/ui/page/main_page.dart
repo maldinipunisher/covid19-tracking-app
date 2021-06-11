@@ -50,7 +50,6 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
       body: Stack(
         children: [
           ListView(
@@ -75,7 +74,10 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                           });
                         },
                         children: [
-                          ProfilePage(user: user),
+                          ProfilePage(
+                            user: user,
+                            weatherData: _weather,
+                          ),
                           StatPage(),
                         ],
                       ),
@@ -94,7 +96,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
               margin: const EdgeInsets.symmetric(vertical: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
-                color: salmon,
+                color: (_pageIndex == 0) ? salmon : blue,
               ),
               child: Row(
                 children: [
