@@ -6,19 +6,19 @@ class SplashPopUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: white,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-      title: const Center(child: Text("Sign In")),
+      contentPadding: EdgeInsets.symmetric(horizontal: 40.sp),
+      title: Center(child: Text("Masuk")),
       content: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SignInButton(Buttons.Google,
-              elevation: 2, text: "Sign In With Google", onPressed: () async {
+              elevation: 2, text: "Masuk dengan google", onPressed: () async {
             AuthServices.googleSignIn().then((userCredential) async {
               final Users user = userCredential.user.convertToUsers();
               AuthServices.insertUserData();
-              BlocProvider.of<PageBloc>(context).add(GoToPreferencePage(user));
-              prevPageEvent = GoToPreferencePage(user);
+              BlocProvider.of<PageBloc>(context).add(GoToMainPage(user));
+              prevPageEvent = GoToMainPage(user);
               Navigator.pop(context);
             });
           }),

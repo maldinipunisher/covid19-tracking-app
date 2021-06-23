@@ -25,10 +25,3 @@ class OnMainPage extends PageState {
   @override
   List<Object> get props => [];
 }
-
-class OnPreferencePage extends PageState {
-  final Users userCredential;
-  const OnPreferencePage(this.userCredential);
-  @override
-  List<Object> get props => [];
-}

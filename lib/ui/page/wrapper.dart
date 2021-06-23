@@ -14,29 +14,16 @@ class Wrapper extends StatelessWidget {
           prevPageEvent = GoToSplashPage();
           BlocProvider.of<PageBloc>(context).add(prevPageEvent);
         }
-      } else if (users == null && user != null) {
-        if (prevPageEvent is! GoToSplashPage) {
-          AuthServices.insertUserData();
-          prevPageEvent = GoToPreferencePage(users);
-          BlocProvider.of<PageBloc>(context).add(prevPageEvent);
-        }
       } else {
-        if (prevPageEvent is! GoToPreferencePage) {
-          prevPageEvent = GoToMainPage(users);
-          BlocProvider.of<PageBloc>(context).add(prevPageEvent);
-        } else {
-          prevPageEvent = GoToPreferencePage(users);
-          BlocProvider.of<PageBloc>(context).add(prevPageEvent);
-        }
+        prevPageEvent = GoToMainPage(users);
+        BlocProvider.of<PageBloc>(context).add(prevPageEvent);
       }
     });
 
     return BlocBuilder<PageBloc, PageState>(builder: (context, pageState) {
       return (pageState is OnMainPage)
           ? MainPage(pageState.userCredential)
-          : (pageState is OnPreferencePage)
-              ? PreferencePage(pageState.userCredential)
-              : SplashPage();
+          : SplashPage();
     });
   }
 }

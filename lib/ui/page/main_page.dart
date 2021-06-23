@@ -3,34 +3,37 @@ part of 'pages.dart';
 class MainPage extends StatefulWidget {
   final Users user;
 
-  const MainPage(this.user);
+  const MainPage(this.user, {Key key}) : super(key: key);
+
   @override
-  _MainPageState createState() => _MainPageState(user);
+  _MainPageState createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
-  final Users user;
   Weather _weather;
   PageController _pageController;
   int _pageIndex = 0;
+  AffectedCovid _patients;
+  // ignore: prefer_final_fields
   double _btnNavigatorSize = 30;
-  _MainPageState(this.user);
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     ApiServices.getGeoLocation().then((geoPos) {
       setState(() {
         latitude = geoPos.latitude.toString();
         longtitude = geoPos.longitude.toString();
-
-        print(latitude);
-        print(longtitude);
       });
       ApiServices.getWeatherData().then((weather) {
         setState(() {
           _weather = weather;
         });
+      });
+    });
+
+    ApiServices.getCovidData(country: widget.user.country).then((affected) {
+      setState(() {
+        _patients = affected;
       });
     });
 
@@ -41,7 +44,6 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _pageController.dispose();
   }
@@ -53,14 +55,14 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
       body: Stack(
         children: [
           ListView(
-            physics: ClampingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             children: [
               SafeArea(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
+                    SizedBox(
                       height: MediaQuery.of(context).size.height -
                           MediaQuery.of(context).padding.top -
                           MediaQuery.of(context).padding.bottom,
@@ -75,10 +77,10 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                         },
                         children: [
                           ProfilePage(
-                            user: user,
+                            user: widget.user,
                             weatherData: _weather,
                           ),
-                          StatPage(),
+                          StatPage(widget.user, _patients),
                         ],
                       ),
                     ),

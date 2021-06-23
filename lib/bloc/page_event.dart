@@ -21,11 +21,3 @@ class GoToMainPage extends PageEvent {
   @override
   List<Object> get props => [];
 }
-
-class GoToPreferencePage extends PageEvent {
-  final Users userCredential;
-  const GoToPreferencePage(this.userCredential);
-
-  @override
-  List<Object> get props => [];
-}

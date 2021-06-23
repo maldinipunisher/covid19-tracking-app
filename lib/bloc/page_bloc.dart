@@ -16,8 +16,6 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnSignInPage();
     } else if (event is GoToMainPage) {
       yield OnMainPage(event.userCredential);
-    } else if (event is GoToPreferencePage) {
-      yield OnPreferencePage(event.userCredential);
     } else {
       yield OnSplashPage();
     }

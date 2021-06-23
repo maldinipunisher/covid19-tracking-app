@@ -66,19 +66,17 @@ class AuthServices {
     }
   }
 
-  static void insertUserData(
-      {String language = "English", String country = ""}) async {
+  static void insertUserData({String country = ""}) async {
     final CollectionReference userCol =
         FirebaseFirestore.instance.collection('users');
     final user = _auth.currentUser;
-    user.convertToUsers(language: language, country: country);
+    user.convertToUsers(country: country);
     userCol
         .doc(user.uid)
         .set({
           'uid': user.uid,
           'email': user.email,
           'name': user.displayName,
-          'language': language,
           'country': country,
           'profilePicture': user.photoURL
         })
@@ -95,8 +93,7 @@ class AuthServices {
           .doc(user.uid)
           .get();
       final userData = snapshot.data() as Map;
-      return user.convertToUsers(
-          language: userData['language'], country: userData['country']);
+      return user.convertToUsers(country: userData['country']);
     } catch (err) {
       message = err.toString();
     }

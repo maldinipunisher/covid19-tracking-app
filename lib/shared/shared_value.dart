@@ -4,7 +4,7 @@ String globalAPI = "https://covid19.mathdro.id/api/";
 //api hanya boleh dipanggil 1 menit sekali
 //api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}
 //api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
-String weatherApiKey = "yourApiKey";
+String weatherApiKey = "b2e60713c55c5c11dc2db1b04e3b7ae7";
 String latitude = "";
 String longtitude = "";
 String weatherAPI =
@@ -24,25 +24,12 @@ TextStyle titleTextStyle = TextStyle(
     decoration: TextDecoration.none,
     fontFamily: GoogleFonts.ptSansCaption().fontFamily,
     fontStyle: GoogleFonts.ptSansCaption().fontStyle,
-    fontSize: 30);
+    fontSize: 40.sp);
 
 TextStyle paragraphTextStyle = TextStyle(
     decoration: TextDecoration.none,
     fontFamily: GoogleFonts.ptSansCaption().fontFamily,
     fontStyle: GoogleFonts.ptSansCaption().fontStyle,
-    fontSize: 18,
+    fontSize: 30.sp,
     wordSpacing: 1.5);
 PageEvent prevPageEvent;
-List<String> availableLanguage = [
-  "English",
-  "Indonesia",
-  "Chinese",
-  "Korea",
-  "Japanese"
-];
-
-Map<String, String> english = {};
-Map<String, String> indonesia = {};
-Map<String, String> chinenese = {};
-Map<String, String> korea = {};
-Map<String, String> japan = {};

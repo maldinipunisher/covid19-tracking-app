@@ -20,23 +20,26 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
-    print(dateNow);
-    if (dateNow < 12) {
-      greeting = "morning";
+    dateNow = DateTime.now().hour;
+    if (dateNow < 11) {
+      greeting = "Selamat Pagi";
+    } else if (dateNow < 14) {
+      greeting = "Selamat Siang";
     } else if (dateNow < 17) {
-      greeting = "afternoon";
+      greeting = "Selamat Sore";
     } else {
-      greeting = "evening";
+      greeting = "Selamat Malam";
     }
     Timer.periodic(const Duration(minutes: 15), (timer) {
       setState(() {
-        dateNow = DateTime.now().hour;
-        if (dateNow < 12) {
-          greeting = "morning";
+        if (dateNow < 11) {
+          greeting = "Selamat Pagi";
+        } else if (dateNow < 14) {
+          greeting = "Selamat Siang";
         } else if (dateNow < 17) {
-          greeting = "afternoon";
+          greeting = "Selamat Sore";
         } else {
-          greeting = "evening";
+          greeting = "Selamat Malam";
         }
       });
     });
@@ -69,26 +72,20 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        //get user info
-                        print("tapped");
-                      },
-                      child: Container(
-                        width: 60,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: (widget.user.profilePicture == "")
-                                  ? const AssetImage(
-                                      "assets/images/profile_pic.png")
-                                  : NetworkImage(widget.user.profilePicture)),
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(25),
-                        ),
+                    Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: (widget.user.profilePicture == "")
+                                ? const AssetImage(
+                                    "assets/images/profile_pic.png")
+                                : NetworkImage(widget.user.profilePicture)),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(25),
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       height: 60,
                       width: 60,
                       child: RaisedButton(
@@ -98,7 +95,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           onPressed: () {
                             //go to settings
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => AccountMenuPage()));
+                                builder: (context) => const AccountMenuPage()));
                           },
                           color: Colors.transparent,
                           child: Center(
@@ -119,11 +116,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Hello, good $greeting",
+                      "Hai , $greeting",
                       style:
                           titleTextStyle.copyWith(fontWeight: FontWeight.w400),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       widget.user.name.toString(),
                       style:
@@ -135,7 +132,7 @@ class _ProfilePageState extends State<ProfilePage> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-                child: Container(
+                child: SizedBox(
                     width: MediaQuery.of(context).size.width * 90 / 100,
                     height: 200,
                     child: Stack(
@@ -159,13 +156,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "How to recover from ",
+                                      "Bagaimana sembuh dari covid-19",
                                       style: paragraphTextStyle,
-                                    ),
-                                    Text(
-                                      "Covid 19",
-                                      style: paragraphTextStyle.copyWith(
-                                          fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 ),
@@ -182,7 +174,10 @@ class _ProfilePageState extends State<ProfilePage> {
                               height: 60,
                               child: RaisedButton(
                                   elevation: 0,
-                                  onPressed: () async {},
+                                  onPressed: () async {
+                                    await openURL(
+                                        "https://health.detik.com/berita-detikhealth/d-5617680/perlu-tahu-cara-sembuh-dari-covid-19-gejala-ringan-atau-tak-bergejala");
+                                  },
                                   color: white,
                                   shape: RoundedRectangleBorder(
                                       side: BorderSide(color: black, width: 1),
@@ -198,7 +193,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     )),
               ),
               Center(
-                child: Container(
+                child: SizedBox(
                   height: MediaQuery.of(context).size.height * 52 / 100,
                   width: MediaQuery.of(context).size.width * 95 / 100,
                   child: GridView.count(
@@ -216,7 +211,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               height: 200,
                               padding: 10,
                               width: 100,
-                              title: Text("Temperature",
+                              title: Text("Temperatur",
                                   style: titleTextStyle.copyWith(
                                       color: black, fontSize: 17)),
                               heading: Text(
@@ -259,7 +254,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               height: 200,
                               padding: 10,
                               width: 100,
-                              title: Text("Weather",
+                              title: Text("Cuaca",
                                   style: titleTextStyle.copyWith(
                                       color: black, fontSize: 17)),
                               action: Text(
@@ -285,7 +280,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                         if (widget.weatherData == null)
-                          SpinKitFadingCircle(color: blue),
+                          const SpinKitFadingCircle(color: Colors.yellow),
 
                         //3
                         if (widget.weatherData != null)
@@ -296,7 +291,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 height: 200,
                                 padding: 10,
                                 width: 100,
-                                title: Text("Air Pressure",
+                                title: Text("Tekanan Udara",
                                     style: titleTextStyle.copyWith(
                                         color: black, fontSize: 17)),
                                 heading: Text(
@@ -319,7 +314,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     color: lightBlue1, size: 30),
                               )),
                         if (widget.weatherData == null)
-                          SpinKitFadingCircle(color: salmon),
+                          SpinKitFadingCircle(color: Colors.orange[400]),
 
                         //4
                         if (widget.weatherData != null)
@@ -329,7 +324,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               height: 200,
                               padding: 10,
                               width: 100,
-                              title: Text("Humidity",
+                              title: Text("Kelembaban",
                                   style: titleTextStyle.copyWith(
                                       color: black, fontSize: 17)),
                               heading: Center(
@@ -355,21 +350,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                       fontSize: 16)),
                               icon: Icon(Ionicons.water_outline,
                                   color: lightBlue2, size: 30),
-                              leading: Text(""),
+                              leading: const Text(""),
                             ),
                           ),
                         if (widget.weatherData == null)
-                          SpinKitFadingCircle(color: blue),
+                          SpinKitFadingCircle(color: lightBlue3),
                       ]),
                 ),
               ),
-              // RaisedButton(
-              //   onPressed: () {
-              //     AuthServices.signOut();
-              //     BlocProvider.of<PageBloc>(context).add(GoToSplashPage());
-              //   },
-              //   child: Text("Sign out"),
-              // ),
             ],
           )),
         ],

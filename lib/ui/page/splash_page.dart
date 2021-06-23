@@ -15,6 +15,8 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
   bool _btnEnable = true;
 
+  String firstLocale = Platform.localeName;
+
   @override
   void initState() {
     super.initState();
@@ -58,107 +60,96 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
               overScroll.disallowGlow();
               return;
             },
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ClipPath(
-                      clipper: CustomSplash(),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 50 / 100,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image:
-                                  AssetImage("assets/images/splash_page.jpg"),
-                              fit: BoxFit.cover),
-                        ),
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 30),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ClipPath(
+                    clipper: CustomSplash(),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 50 / 100,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/images/splash_page.jpg"),
+                            fit: BoxFit.cover),
                       ),
                     ),
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 500),
-                      child: FadeTransition(
-                        opacity: _fadeAnimation1,
-                        child: Text(
-                          "Wear a mask -",
-                          style: titleTextStyle.copyWith(
-                              color: black, fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                    FadeTransition(
-                      opacity: _fadeAnimation2,
+                  ),
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 500),
+                    child: FadeTransition(
+                      opacity: _fadeAnimation1,
                       child: Text(
-                        "save lives",
+                        "Pakai masker",
                         style: titleTextStyle.copyWith(
-                            color: black, fontWeight: FontWeight.bold),
+                            color: black, fontWeight: FontWeight.w400),
                       ),
                     ),
-                    const SizedBox(
-                      height: 50,
+                  ),
+                  FadeTransition(
+                    opacity: _fadeAnimation2,
+                    child: Text(
+                      "Selamatkan kehidupan",
+                      style: titleTextStyle.copyWith(
+                          color: black, fontWeight: FontWeight.bold),
                     ),
-                    FadeTransition(
-                      opacity: _fadeAnimation3,
+                  ),
+                  FadeTransition(
+                    opacity: _fadeAnimation3,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 270.sp),
                       child: Text(
-                        "Use proven information about the\ndesease and take the necessary\npreventine measures",
+                        "Dapatkan informasi tentang penyakit dan ambil tindakan yang diperlukan untuk mengatasinya",
                         textAlign: TextAlign.center,
                         style: paragraphTextStyle.copyWith(
                             color: gray, fontWeight: FontWeight.w400),
                       ),
                     ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 4 / 100,
+                  ),
+                  if (_btnEnable)
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 4 / 100,
-                    ),
-                    if (_btnEnable)
-                      SizedBox(
-                          width: 70,
-                          height: 70,
-                          // ignore: deprecated_member_use
-                          child: RaisedButton(
-                              elevation: 0,
-                              onPressed: () async {
+                        width: ScreenUtil().setWidth(140),
+                        height: ScreenUtil().setHeight(140),
+                        // ignore: deprecated_member_use
+                        child: RaisedButton(
+                            elevation: 0,
+                            onPressed: () async {
+                              setState(() {
+                                _btnEnable = false;
+                              });
+                              Timer(const Duration(seconds: 4), () {
                                 setState(() {
-                                  _btnEnable = false;
+                                  _btnEnable = true;
                                 });
-                                Timer(const Duration(seconds: 4), () {
-                                  setState(() {
-                                    _btnEnable = true;
+                              });
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return Center(
+                                        child: SizedBox(
+                                            height: 400.sp,
+                                            child: SplashPopUp()));
                                   });
-                                });
-                                showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return Center(
-                                        // ignore: sized_box_for_whitespace
-                                        child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                20 /
-                                                100,
-                                            child: SplashPopUp()),
-                                      );
-                                    });
-                              },
-                              color: white,
-                              shape: RoundedRectangleBorder(
-                                  side: BorderSide(color: gray, width: 2),
-                                  borderRadius: BorderRadius.circular(25.0)),
-                              child: const Icon(
-                                Icons.arrow_forward,
-                                size: 40,
-                              ))),
-                    if (!_btnEnable)
-                      SpinKitFadingCircle(
-                        color: black,
-                        size: 40,
-                      ),
-                  ],
-                ),
+                            },
+                            color: white,
+                            shape: RoundedRectangleBorder(
+                                side: BorderSide(color: gray, width: 2),
+                                borderRadius: BorderRadius.circular(25.0)),
+                            child: const Icon(
+                              Icons.arrow_forward,
+                              size: 40,
+                            ))),
+                  if (!_btnEnable)
+                    SpinKitFadingCircle(
+                      color: black,
+                      size: 40,
+                    ),
+                ],
               ),
             ),
           ),

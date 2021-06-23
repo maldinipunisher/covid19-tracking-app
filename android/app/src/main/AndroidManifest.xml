@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.devid.covid_tracking">
-  <application android:label="Tracking Covid-19" android:icon="@mipmap/ic_launcher">
+  <application android:label="Track Covid" android:icon="@mipmap/ic_launcher">
     
     <activity android:name=".MainActivity" android:launchMode="singleTop" android:theme="@style/LaunchTheme" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:windowSoftInputMode="adjustResize" android:resizeableActivity="false">
 
